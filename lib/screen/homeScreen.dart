@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:subgroup/constant.dart';
 import 'package:subgroup/helper/greets.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:subgroup/widget/customAppBar.dart';
+import 'package:subgroup/widget/gradientContainer.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -9,31 +11,25 @@ class HomeScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final greet = greeting();
     return Scaffold(
-      backgroundColor: Colors.orange,
-      appBar: AppBar(
-        elevation: 0.0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.menu,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            print("Leading Button Pressed");
-          },
-        ),
-      ),
       body: Stack(
         children: [
-          Container(
-            height: size.height * 0.15,
-            child: Center(
-              child: Text(
-                "Good $greet,\nChanghwan Lee",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 27.0),
-              ),
+          GradientContainer(
+            child: Column(
+              children: [
+                CustomAppBar(),
+                Container(
+                  height: size.height * 0.15,
+                  child: Center(
+                    child: Text(
+                      "Good $greet,\nChanghwan Lee!",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24.0),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           SlidingUpPanel(
@@ -41,25 +37,23 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(20,20,0,10),
+                  padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
                   child: Text(
                     "Group",
                     style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0),
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    width: size.width,
-                    child: Card(
-                      elevation: 2.0,
-                      color: Colors.orange,
-                      shadowColor: Colors.grey,
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.white70, width: 1),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  width: size.width,
+                  height: size.height * .7,
+                  child: Card(
+                    elevation: 2.0,
+                    shadowColor: shadowColor,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.white70, width: 1),
+                      borderRadius: BorderRadius.circular(20),
                     ),
                   ),
                 )
@@ -68,7 +62,7 @@ class HomeScreen extends StatelessWidget {
             panelSnapping: false,
             borderRadius: radius,
             minHeight: size.height * 0.6,
-            maxHeight: size.height,
+            maxHeight: size.height * 0.8,
           ),
         ],
       ),
