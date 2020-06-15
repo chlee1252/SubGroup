@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
+  CustomAppBar({this.iconOnPressed});
+
+  final Function iconOnPressed;
   @override
   Widget build(BuildContext context) {
     final double barHeight = 50.0;
@@ -18,9 +21,7 @@ class CustomAppBar extends StatelessWidget {
                 Icons.menu,
                 color: Colors.white,
               ),
-              onPressed: () {
-                print("Hello World");
-              },
+              onPressed: iconOnPressed,
             ),
           ],
         ),
