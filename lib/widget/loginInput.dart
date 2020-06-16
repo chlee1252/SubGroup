@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class LoginInput extends StatelessWidget {
-  LoginInput({this.hintText, this.icon, this.obscureText=false, this.keyboard, this.gesture});
+  LoginInput({this.hintText, this.icon, this.obscureText=false, this.keyboard, this.suffixIcon});
 
   final bool obscureText;
   final String hintText;
   final IconData icon;
   final TextInputType keyboard;
-  final GestureDetector gesture;
+  final GestureDetector suffixIcon;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,7 +24,7 @@ class LoginInput extends StatelessWidget {
           ),
           hintText: this.hintText,
           hintStyle: TextStyle(fontSize: 17),
-          suffixIcon: this.gesture,
+          suffixIcon: this.suffixIcon,
         ),
       ),
     );
