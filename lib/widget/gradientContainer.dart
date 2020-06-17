@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:subgroup/constant.dart';
 
 class GradientContainer extends StatelessWidget {
-  GradientContainer({this.child, this.width, this.height});
+  GradientContainer({this.child, this.width, this.height, @required this.gradientColor});
 
   final Widget child;
   final double width;
   final double height;
+  final List<Color> gradientColor;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,10 +17,7 @@ class GradientContainer extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.centerRight,
           end: Alignment.centerLeft,
-          colors: [
-            startGradient,
-            endGradient,
-          ],
+          colors: this.gradientColor,
         ),
       ),
       child: this.child,
