@@ -21,11 +21,12 @@ class MyApp extends StatelessWidget {
       ),
 //      home: LoginScreen(),
 //      initialRoute: LoginScreen.id,
-      home: HomeScreen(),
-      initialRoute: HomeScreen.id,
+      home: LoginScreen(),
+      initialRoute: LoginScreen.id,
       routes: {
         LoginScreen.id : (context) => LoginScreen(),
         HomeScreen.id: (context) => HomeScreen(),
+        CreateScreen.id: (context) => CreateScreen(),
       }
     );
   }
