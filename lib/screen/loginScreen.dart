@@ -3,7 +3,6 @@ import 'package:subgroup/animation/delayedAnimation.dart';
 import 'package:subgroup/constant.dart';
 import 'package:subgroup/screen/homeScreen.dart';
 import 'package:subgroup/widget/circulaGradientrButton.dart';
-import 'package:subgroup/widget/gradientContainer.dart';
 import 'package:subgroup/widget/loginInput.dart';
 import 'package:subgroup/widget/textButton.dart';
 
@@ -84,10 +83,7 @@ class _LoginScreenState extends State<LoginScreen>
                           width: double.infinity,
                           borderRadius: BorderRadius.all(Radius.circular(18.0),),
                           gradient: LinearGradient(
-                            colors: [
-                              startGradient,
-                              endGradient,
-                            ],
+                            colors: greenGradient,
                             begin: const FractionalOffset(0.2, 0.2),
                             end: const FractionalOffset(1.0, 1.0),
                             tileMode: TileMode.clamp,
@@ -109,6 +105,7 @@ class _LoginScreenState extends State<LoginScreen>
                       ]
                     ),
                   ),
+                  delay: 800,
                 )
               ],
             ),
