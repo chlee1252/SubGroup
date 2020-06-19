@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:subgroup/constant.dart';
+import 'package:subgroup/screen/loginScreen.dart';
 import 'package:subgroup/widget/profileWidget.dart';
 import 'package:subgroup/widget/textButton.dart';
 
@@ -37,7 +37,7 @@ class ProfileDrawer extends StatelessWidget {
               title: "Logout",
               color: Colors.red,
               onPressed: () {
-                print("Logout");
+                Navigator.pushReplacementNamed(context, LoginScreen.id);
               },
             )
           ],
