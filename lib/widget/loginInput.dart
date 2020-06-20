@@ -5,6 +5,7 @@ class LoginInput extends StatelessWidget {
       {this.hintText,
       this.icon,
       this.obscureText = false,
+      this.validator,
       this.keyboard,
       this.suffixIcon,
       this.controller});
@@ -15,11 +16,13 @@ class LoginInput extends StatelessWidget {
   final TextInputType keyboard;
   final GestureDetector suffixIcon;
   final TextEditingController controller;
+  final Function validator;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 25.0),
-      child: TextField(
+      padding: EdgeInsets.symmetric(vertical: 18.0, horizontal: 25.0),
+      child: TextFormField(
+        validator: this.validator,
         controller: this.controller,
         keyboardType: this.keyboard,
         obscureText: this.obscureText,
@@ -27,7 +30,6 @@ class LoginInput extends StatelessWidget {
           border: InputBorder.none,
           icon: Icon(
             this.icon,
-            color: Colors.grey,
             size: 22,
           ),
           hintText: this.hintText,
