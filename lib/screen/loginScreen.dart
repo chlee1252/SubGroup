@@ -1,23 +1,22 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:subgroup/animation/delayedAnimation.dart';
 import 'package:subgroup/constant.dart';
+import 'package:subgroup/providers/viewPasswordProvider.dart';
 import 'package:subgroup/screen/homeScreen.dart';
 import 'package:subgroup/widget/circulaGradientrButton.dart';
 import 'package:subgroup/widget/loginInput.dart';
 import 'package:subgroup/widget/textButton.dart';
+import 'package:subgroup/widget/logoAndHeader.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   static final id = "loginscreen";
-
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen>
-    with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final _formKey = GlobalKey<FormState>();
+    final _emailController = TextEditingController();
+    final _passwordController = TextEditingController();
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -28,23 +27,8 @@ class _LoginScreenState extends State<LoginScreen>
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 DelayedAnimation(
-                  child: CircleAvatar(
-                    radius: 50,
-                    backgroundColor: Colors.lightGreenAccent,
-                  ),
-                ),
-                DelayedAnimation(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 12.0),
-                    child: Text(
-                      "Log In to App",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        letterSpacing: 1.0,
-                        fontSize: 20.0,
-                        color: Colors.lightGreen,
-                      ),
-                    ),
+                  child: LogoAndHeader(
+                    header: "Log In to App",
                   ),
                 ),
                 SizedBox(height: 30.0),
@@ -54,58 +38,67 @@ class _LoginScreenState extends State<LoginScreen>
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     elevation: 2.0,
-                    child: Column(
-                      children: [
+                    child: Form(
+                      key: _formKey,
+                      child: Column(children: [
                         LoginInput(
+                          controller: _emailController,
                           hintText: "Email Address",
                           icon: Icons.mail,
                           keyboard: TextInputType.emailAddress,
+                          validator: (val) => EmailValidator.validate(val)
+                              ? null
+                              : "Please check your email!",
                         ),
                         Container(
-                          width: 250,
-                          height: 1,
-                          color: Colors.grey[400]
-                        ),
-                        LoginInput(
-                          hintText: "Password",
-                          icon: Icons.lock,
-                          obscureText: true,
-                          suffixIcon: GestureDetector(
-                            child: Icon(Icons.visibility, color: Colors.black, size: 22),
-                            onTap: () {
-                              print("visibility");
-                            },
-                          )
+                            width: 250, height: 1, color: Colors.grey[400]),
+                        Consumer<ViewPassword>(
+                          builder: (context, value, child) {
+                            return LoginInput(
+                              controller: _passwordController,
+                              hintText: "Password",
+                              icon: Icons.lock,
+                              obscureText: value.getToggle(),
+                              suffixIcon: GestureDetector(
+                                child: Icon(Icons.visibility,
+                                    color: Colors.black, size: 22),
+                                onTap: () {
+                                  value.toggle();
+                                },
+                              ),
+                              validator: (val) =>
+                              val.isEmpty ? "Please enter password" : null,
+                            );
+                          },
                         ),
                         CircularGradientButton(
                           title: "LOGIN",
                           height: 42,
                           width: double.infinity,
-                          borderRadius: BorderRadius.all(Radius.circular(18.0),),
-                          gradient: LinearGradient(
-                            colors: greenGradient,
-                            begin: const FractionalOffset(0.2, 0.2),
-                            end: const FractionalOffset(1.0, 1.0),
-                            tileMode: TileMode.clamp,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(18.0),
                           ),
+                          gradient: buttonGradient,
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, HomeScreen.id);
+                            if (_formKey.currentState.validate()) {
+                              Navigator.pushReplacementNamed(
+                                  context, HomeScreen.id);
+                            }
                           },
                         ),
                         Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: TextButton(
-                            title: "Forget Password?",
-                            color: Colors.grey,
-                            onPressed: () {
-                              print("Forget Pasword");
-                            },
-                          )
-                        )
-                      ]
+                            padding: EdgeInsets.all(10.0),
+                            child: TextButton(
+                              title: "Forget Password?",
+                              color: Colors.grey,
+                              onPressed: () {
+                                print("Forget Pasword");
+                              },
+                            ))
+                      ]),
                     ),
                   ),
-                  delay: 800,
+                  delay: 1000,
                 )
               ],
             ),
