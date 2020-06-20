@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 
 class LoginInput extends StatelessWidget {
-  LoginInput({this.hintText, this.icon, this.obscureText=false, this.keyboard, this.suffixIcon});
+  LoginInput(
+      {this.hintText,
+      this.icon,
+      this.obscureText = false,
+      this.keyboard,
+      this.suffixIcon,
+      this.controller});
 
   final bool obscureText;
   final String hintText;
   final IconData icon;
   final TextInputType keyboard;
   final GestureDetector suffixIcon;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 25.0),
       child: TextField(
+        controller: this.controller,
         keyboardType: this.keyboard,
         obscureText: this.obscureText,
         decoration: InputDecoration(
