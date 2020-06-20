@@ -11,6 +11,12 @@ final List<Color> greenGradient = [
   startGradient,
   endGradient,
 ];
+final LinearGradient buttonGradient = LinearGradient(
+  colors: greenGradient,
+  begin: const FractionalOffset(0.2, 0.2),
+  end: const FractionalOffset(1.0, 1.0),
+  tileMode: TileMode.clamp,
+);
 
 BorderRadiusGeometry homeMenuRadius = BorderRadius.only(
   topLeft: Radius.circular(30),
