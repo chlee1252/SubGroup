@@ -23,7 +23,6 @@ class LoginScreen extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 DelayedAnimation(
@@ -75,9 +74,7 @@ class LoginScreen extends StatelessWidget {
                           title: "LOGIN",
                           height: 42,
                           width: double.infinity,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(18.0),
-                          ),
+                          borderRadius: circularButtonRadius,
                           gradient: buttonGradient,
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
@@ -85,6 +82,14 @@ class LoginScreen extends StatelessWidget {
                                   context, HomeScreen.id);
                             }
                           },
+                        ),
+                        CircularGradientButton(
+                          title: "BACK",
+                          height: 42,
+                          width: double.infinity,
+                          borderRadius: circularButtonRadius,
+                          gradient: backButtonGradient,
+                          onPressed: () => Navigator.pop(context),
                         ),
                         Padding(
                             padding: EdgeInsets.all(10.0),
