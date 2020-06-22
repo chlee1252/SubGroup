@@ -30,65 +30,74 @@ class RegisterScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  elevation: 2.0,
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        LoginInput(
-                          hintText: "Email Address",
-                          icon: Icons.mail,
-                          keyboard: TextInputType.emailAddress,
-                          validator: (val) => EmailValidator.validate(val)
-                              ? null
-                              : "Please check your email!",
-                        ),
-                        LoginInput(
-                          controller: _password,
-                          hintText: "Password",
-                          icon: Icons.lock,
-                          obscureText: true,
-                          validator: (val) {
-                            if (val.length < 8) {
-                              return "Your Password is too short.\n(Minimum 8 characters)";
-                            }
-                            if (!passwordValidate(val)) {
-                              return "Your Password should contain:\nMinimum 1 Upper Case\nMinimum 1 lower Case\nMinimum 1 Numeric Number\nMinimum 1 Special Character[!@#\$&*~]";
-                            }
-                            return null;
-                          },
-                        ),
-                        LoginInput(
-                          controller: _confirmPassword,
-                          hintText: "Confirm Password",
-                          icon: Icons.lock,
-                          obscureText: true,
-                          validator: (val) => _password.text != val
-                              ? "Your password is different"
-                              : null,
-                        ),
-                        CircularGradientButton(
-                          title: "REGISTER",
-                          height: 42,
-                          width: double.infinity,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(18.0),
+                child: DelayedAnimation(
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    elevation: 2.0,
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          LoginInput(
+                            hintText: "Email Address",
+                            icon: Icons.mail,
+                            keyboard: TextInputType.emailAddress,
+                            validator: (val) => EmailValidator.validate(val)
+                                ? null
+                                : "Please check your email!",
                           ),
-                          gradient: buttonGradient,
-                          onPressed: () {
-                            if (_formKey.currentState.validate()) {
-                              Navigator.pushReplacementNamed(
-                                  context, HomeScreen.id);
-                            }
-                          },
-                        ),
-                      ],
+                          LoginInput(
+                            controller: _password,
+                            hintText: "Password",
+                            icon: Icons.lock,
+                            obscureText: true,
+                            validator: (val) {
+                              if (val.length < 8) {
+                                return "Your Password is too short.\n(Minimum 8 characters)";
+                              }
+                              if (!passwordValidate(val)) {
+                                return "Your Password should contain:\nMinimum 1 Upper Case\nMinimum 1 lower Case\nMinimum 1 Numeric Number\nMinimum 1 Special Character[!@#\$&*~]";
+                              }
+                              return null;
+                            },
+                          ),
+                          LoginInput(
+                            controller: _confirmPassword,
+                            hintText: "Confirm Password",
+                            icon: Icons.lock,
+                            obscureText: true,
+                            validator: (val) => _password.text != val
+                                ? "Your password is different"
+                                : null,
+                          ),
+                          CircularGradientButton(
+                            title: "REGISTER",
+                            height: 42,
+                            width: double.infinity,
+                            borderRadius: circularButtonRadius,
+                            gradient: buttonGradient,
+                            onPressed: () {
+                              if (_formKey.currentState.validate()) {
+                                Navigator.pushReplacementNamed(
+                                    context, HomeScreen.id);
+                              }
+                            },
+                          ),
+                          CircularGradientButton(
+                            title: "BACK",
+                            height: 42,
+                            width: double.infinity,
+                            borderRadius: circularButtonRadius,
+                            gradient: backButtonGradient,
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
+                  delay: 1000,
                 ),
               )
             ],
