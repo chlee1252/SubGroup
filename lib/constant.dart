@@ -11,8 +11,23 @@ final List<Color> greenGradient = [
   startGradient,
   endGradient,
 ];
+final List<Color> grayGradient = [
+  hexToColor('#CFD6E6'),
+  hexToColor('#E7EFF9'),
+];
 final LinearGradient buttonGradient = LinearGradient(
   colors: greenGradient,
+  begin: const FractionalOffset(0.2, 0.2),
+  end: const FractionalOffset(1.0, 1.0),
+  tileMode: TileMode.clamp,
+);
+
+final BorderRadius circularButtonRadius = BorderRadius.all(
+  Radius.circular(18.0),
+);
+
+final LinearGradient backButtonGradient = LinearGradient(
+  colors: grayGradient,
   begin: const FractionalOffset(0.2, 0.2),
   end: const FractionalOffset(1.0, 1.0),
   tileMode: TileMode.clamp,
