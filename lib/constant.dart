@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:subgroup/helper/hexToColor.dart';
 
+final shortPWMessage = "Your Password is too short.\n(Minimum 8 characters)";
+final emptyPasswordMessage = "Password cannot be blank";
+final passwordRequirementErrorMessage = "Your Password should contain:\nMinimum 1 Upper Case\nMinimum 1 lower Case\nMinimum 1 Numeric Number\nMinimum 1 Special Character[!@#\$&*~]";
+final differentPasswordError = "Password does not match";
+
+final emailErrorMessage = "Please check your email!";
+
 final shadowColor = Color(0xFF878787).withOpacity(.16);
 final placeHolderColor = Colors.lightGreenAccent;
 final startGradient = hexToColor('#98DE5B');
