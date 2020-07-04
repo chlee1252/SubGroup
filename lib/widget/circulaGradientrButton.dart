@@ -4,7 +4,7 @@ class CircularGradientButton extends StatelessWidget {
   CircularGradientButton(
       {this.height,
         this.width,
-      this.gradient,
+      @required this.gradient,
       this.title,
       this.borderRadius,
       @required this.onPressed});
