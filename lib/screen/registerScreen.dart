@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:subgroup/animation/delayedAnimation.dart';
 import 'package:subgroup/helper/passwordValidate.dart';
+import 'package:subgroup/screen/screens.dart';
 import 'package:subgroup/widget/circulaGradientrButton.dart';
 import 'package:subgroup/widget/loginInput.dart';
 import 'package:subgroup/widget/logoAndHeader.dart';
@@ -46,7 +47,7 @@ class RegisterScreen extends StatelessWidget {
                             keyboard: TextInputType.emailAddress,
                             validator: (val) => EmailValidator.validate(val)
                                 ? null
-                                : "Please check your email!",
+                                : emailErrorMessage,
                           ),
                           LoginInput(
                             controller: _password,
@@ -55,10 +56,10 @@ class RegisterScreen extends StatelessWidget {
                             obscureText: true,
                             validator: (val) {
                               if (val.length < 8) {
-                                return "Your Password is too short.\n(Minimum 8 characters)";
+                                return shortPWMessage;
                               }
                               if (!passwordValidate(val)) {
-                                return "Your Password should contain:\nMinimum 1 Upper Case\nMinimum 1 lower Case\nMinimum 1 Numeric Number\nMinimum 1 Special Character[!@#\$&*~]";
+                                return passwordRequirementErrorMessage;
                               }
                               return null;
                             },
@@ -69,7 +70,7 @@ class RegisterScreen extends StatelessWidget {
                             icon: Icons.lock,
                             obscureText: true,
                             validator: (val) => _password.text != val
-                                ? "Your password is different"
+                                ? differentPasswordError
                                 : null,
                           ),
                           CircularGradientButton(
@@ -91,7 +92,7 @@ class RegisterScreen extends StatelessWidget {
                             width: double.infinity,
                             borderRadius: circularButtonRadius,
                             gradient: backButtonGradient,
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: () => Navigator.pushReplacementNamed(context, WelcomeScreen.id),
                           ),
                         ],
                       ),
