@@ -5,6 +5,7 @@ import 'package:subgroup/animation/delayedAnimation.dart';
 import 'package:subgroup/constant.dart';
 import 'package:subgroup/providers/viewPasswordProvider.dart';
 import 'package:subgroup/screen/homeScreen.dart';
+import 'package:subgroup/screen/screens.dart';
 import 'package:subgroup/widget/circulaGradientrButton.dart';
 import 'package:subgroup/widget/loginInput.dart';
 import 'package:subgroup/widget/textButton.dart';
@@ -47,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                           keyboard: TextInputType.emailAddress,
                           validator: (val) => EmailValidator.validate(val)
                               ? null
-                              : "Please check your email!",
+                              : emailErrorMessage,
                         ),
                         Container(
                             width: 250, height: 1, color: Colors.grey[400]),
@@ -66,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                                 },
                               ),
                               validator: (val) =>
-                              val.isEmpty ? "Please enter password" : null,
+                              val.isEmpty ? emptyPasswordMessage : null,
                             );
                           },
                         ),
@@ -89,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                           width: double.infinity,
                           borderRadius: circularButtonRadius,
                           gradient: backButtonGradient,
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () => Navigator.pushReplacementNamed(context, WelcomeScreen.id),
                         ),
                         Padding(
                             padding: EdgeInsets.all(10.0),
