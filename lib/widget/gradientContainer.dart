@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:subgroup/constant.dart';
 
 class GradientContainer extends StatelessWidget {
   GradientContainer({this.child, this.width, this.height, @required this.gradientColor});
