@@ -75,7 +75,6 @@ class HomeScreen extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 5),
                     width: size.width,
-                    height: size.height * .7,
                     child: Card(
                       elevation: 2.0,
                       shadowColor: shadowColor,
