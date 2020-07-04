@@ -41,8 +41,9 @@ class CreateScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 20),
                 child: Column(
                   children: [
-                    InputTile(leadingTitle: "Title",),
-                    InputTile(leadingTitle: "Subscription",),
+                    //TODO: Implement InputTile
+                    InputTile(hintText: "Title",),
+                    InputTile(hintText: "Subscription",),
                   ],
                 ),
               ),
