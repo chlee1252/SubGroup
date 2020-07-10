@@ -10,7 +10,7 @@ import 'package:subgroup/constant.dart';
 import 'package:subgroup/screen/homeScreen.dart';
 
 class RegisterScreen extends StatelessWidget {
-  static final id = "registerscreen";
+  static const id = "registerscreen";
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();

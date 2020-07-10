@@ -7,7 +7,7 @@ import 'package:subgroup/widget/circulaGradientrButton.dart';
 import 'package:subgroup/widget/logoAndHeader.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  static final id = "welcomeScreen";
+  static const id = "welcomeScreen";
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -11,7 +11,7 @@ import 'package:subgroup/widget/profileDrawer.dart';
 //TODO: Animation dispose Error Check!
 
 class HomeScreen extends StatelessWidget {
-  static final id = "homescreen";
+  static const id = "homescreen";
 
   @override
   Widget build(BuildContext context) {

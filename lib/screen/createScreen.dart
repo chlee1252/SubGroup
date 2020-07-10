@@ -6,7 +6,7 @@ import 'package:subgroup/widget/gradientContainer.dart';
 import 'package:subgroup/widget/inputTile.dart';
 
 class CreateScreen extends StatelessWidget {
-  static final id = 'CreateScreen';
+  static const id = 'CreateScreen';
 
   @override
   Widget build(BuildContext context) {

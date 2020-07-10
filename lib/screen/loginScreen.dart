@@ -12,7 +12,7 @@ import 'package:subgroup/widget/textButton.dart';
 import 'package:subgroup/widget/logoAndHeader.dart';
 
 class LoginScreen extends StatelessWidget {
-  static final id = "loginscreen";
+  static const id = "loginscreen";
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
