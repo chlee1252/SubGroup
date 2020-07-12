@@ -1,9 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 class DelayedAnimation extends StatefulWidget {
-  DelayedAnimation({@required this.child, this.delay});
+  DelayedAnimation({@required this.child, this.delay = 0});
 
   final Widget child;
   final int delay;
@@ -15,6 +13,7 @@ class _DelayedAnimationState extends State<DelayedAnimation>
     with TickerProviderStateMixin {
   AnimationController _controller;
   Animation<Offset> _animationOffset;
+  bool disposed = false;
 
   @override
   void initState() {
@@ -27,13 +26,14 @@ class _DelayedAnimationState extends State<DelayedAnimation>
         Tween<Offset>(begin: const Offset(0.0, 0.35), end: Offset.zero)
             .animate(curve);
 
-    if (widget.delay == null) {
+    Future.delayed(Duration(milliseconds: widget.delay), () {
+      if (disposed) {
+        return;
+      }
       _controller.forward();
-    } else {
-      Timer(Duration(milliseconds: widget.delay), () {
-        _controller.forward();
-      });
-    }
+    });
+
+
   }
 
   @override
@@ -49,6 +49,7 @@ class _DelayedAnimationState extends State<DelayedAnimation>
 
   @override
   void dispose() {
+    disposed = true;
     _controller.dispose();
     super.dispose();
   }
