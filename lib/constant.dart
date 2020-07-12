@@ -8,6 +8,8 @@ final differentPasswordError = "Password does not match";
 
 final emailErrorMessage = "Please check your email!";
 
+final nameErrorMessage = "Please enter your name";
+
 final shadowColor = Color(0xFF878787).withOpacity(.16);
 final placeHolderColor = Colors.lightGreenAccent;
 final startGradient = hexToColor('#98DE5B');
