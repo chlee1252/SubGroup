@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:subgroup/animation/delayedAnimation.dart';
 import 'package:subgroup/constant.dart';
+import 'package:subgroup/providers/AuthProvider.dart';
 import 'package:subgroup/providers/viewPasswordProvider.dart';
 import 'package:subgroup/screen/homeScreen.dart';
 import 'package:subgroup/screen/screens.dart';
-import 'package:subgroup/widget/circulaGradientrButton.dart';
+import 'package:subgroup/widget/circularGradientButton.dart';
 import 'package:subgroup/widget/loginInput.dart';
 import 'package:subgroup/widget/textButton.dart';
 import 'package:subgroup/widget/logoAndHeader.dart';
@@ -46,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                           hintText: "Email Address",
                           icon: Icons.mail,
                           keyboard: TextInputType.emailAddress,
-                          validator: (val) => EmailValidator.validate(val)
+                          validator: (val) => EmailValidator.validate(val.trim())
                               ? null
                               : emailErrorMessage,
                         ),
@@ -79,9 +80,19 @@ class LoginScreen extends StatelessWidget {
                           gradient: buttonGradient,
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              Navigator.pushReplacementNamed(
-                                  context, HomeScreen.id);
+                              final email = _emailController.text.trim();
+                              final pw = _passwordController.text;
+                              //TODO: Login Support
+                              Provider.of<AuthProvider>(context, listen: false).signIn(email, pw).then((value) {
+                                if (value) {
+                                  Navigator.pushReplacementNamed(
+                                      context, HomeScreen.id);
+                                } else {
+                                  print("Failed to Login");
+                                }
+                              });
                             }
+
                           },
                         ),
                         CircularGradientButton(
@@ -98,7 +109,7 @@ class LoginScreen extends StatelessWidget {
                               title: "Forget Password?",
                               color: Colors.grey,
                               onPressed: () {
-                                print("Forget Pasword");
+                                print("Forget Password");
                               },
                             ))
                       ]),
